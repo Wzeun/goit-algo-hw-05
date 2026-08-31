@@ -3,7 +3,6 @@ def input_error(func):
     def inner(*args, **kwargs):
 
         try:
-            # здесь вызываем исходную функцию
             return func(*args, **kwargs)
 
         except ValueError:
@@ -16,7 +15,6 @@ def input_error(func):
             return "Enter user name."
 
     return inner
-#Enter the argument for the command
 
 def parse_input(command):
     command, *args = command.split()
@@ -62,7 +60,9 @@ def main():
     while True:
         print("Enter a command please:")
         user_input = input()
-
+        if not user_input:
+            print("Please enter a command")
+            continue
         command, args = parse_input(user_input)
 
         if command in ["exit", "quit", "close"]:
